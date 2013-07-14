@@ -79,6 +79,10 @@ printf "Installing Git .....\n"
 
 sudo apt-get -y  install git >> ${LOG} 2>>${ERR}
 
+printf "Installing smplayer"
+
+sudo apt-get -y install smplayer >> ${LOG} 2>>${ERR}
+
 printf "Setting the parameters\n"
 
 git config --global user.name "sbondada"
