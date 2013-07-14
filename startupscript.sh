@@ -82,7 +82,7 @@ sudo apt-get -y  install git >> ${LOG} 2>>${ERR}
 printf "Setting the parameters\n"
 
 git config --global user.name "sbondada"
-git config --global user.email sbondada@buffalo.edu
+git config --global user.email "sbondada@buffalo.edu"
 if [ ! -f /home/kaushal/.ssh/id_rsa.pub ] || [ ! -f /home/kaushal/.ssh/id_rsa.pub ] ; then
   ssh-keygen -t rsa -C "sbondada@buffalo.edu"
 fi
