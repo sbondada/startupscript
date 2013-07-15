@@ -71,6 +71,12 @@ printf "Installing Dropbox.....\n"
 
 sudo apt-get -y  install nautilus-dropbox >> ${LOG} 2>>${ERR}
 
+printf "Installing and setting Ubuntu one Client.....\n"
+
+sudo add-apt-repository ppa:noobslab/apps >> ${LOG} 2>>${ERR} #adding the rpositoreis
+sudo apt-get update
+sudo apt-get install ubuntuone-client ubuntuone-control-panel ubuntuone-client-proxy ubuntuone-control-panel-qt 
+
 printf "Installing Filezilla .....\n"
 
 sudo apt-get -y install filezilla >> ${LOG} 2>>${ERR}
