@@ -75,7 +75,7 @@ printf "Installing and setting Ubuntu one Client.....\n"
 
 sudo add-apt-repository ppa:noobslab/apps >> ${LOG} 2>>${ERR} #adding the rpositoreis
 sudo apt-get update
-sudo apt-get install ubuntuone-client ubuntuone-control-panel ubuntuone-client-proxy ubuntuone-control-panel-qt 
+sudo apt-get install -y  ubuntuone-client ubuntuone-control-panel ubuntuone-client-proxy ubuntuone-control-panel-qt 
 
 printf "Installing Filezilla .....\n"
 
