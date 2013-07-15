@@ -135,6 +135,17 @@ sudo apt-get -y install vim
 sudo apt-get update
 sudo apt-get upgrade
 
+printf "Installing Node.js.......\n"
+
+sudo apt-get install python g++ make checkinstall
+mkdir ~/src && cd $_
+wget -N http://nodejs.org/dist/node-latest.tar.gz
+tar xzvf node-latest.tar.gz && cd node-v*
+rm node-latest.tar.gz
+./configure
+checkinstall #(remove the "v" in front of the version number in the dialog)
+sudo dpkg -i node_*
+
 printf "Installing heroku.....\n"
 
 cd ${DOWNLOAD}/
