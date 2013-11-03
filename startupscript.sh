@@ -10,7 +10,7 @@ printf "Instalation initializating....\n"
 sudo apt-get update
 sudo apt-get -y  upgrade
 
-CURRRENT="."
+CURRENT=$(pwd)
 DOWNLOAD="/home/kaushal/Downloads"
 
 cd ${DOWNLOAD}
@@ -85,7 +85,7 @@ printf "Installing Git .....\n"
 
 sudo apt-get -y  install git >> ${LOG} 2>>${ERR}
 
-printf "Installing smplayer"
+printf "Installing smplayer\n"
 
 sudo apt-get -y install smplayer >> ${LOG} 2>>${ERR}
 
@@ -132,14 +132,49 @@ sudo update-alternatives --set c++ /usr/bin/g++
 
 printf "Installing Node ......\n"
 
-sudo apt-get -y install nodejs
+sudo apt-get -y install nodejs >> ${LOG} 2>>${ERR}
 
 printf "Installing VIM ....\n"
 
-sudo apt-get -y install vim
+sudo apt-get -y install vim >> ${LOG} 2>>${ERR}
 
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update >> ${LOG} 2>>${ERR}
+sudo apt-get upgrade >> ${LOG} 2>>${ERR}
+
+cd ${DOWNLOAD}
+printf "getting cisco open connect\n"
+
+curl 'https://download.acsu.buffalo.edu/techtools/linux/anyconnect-predeploy-linux-64-3.1.02043-k9.tar.gz' -H 'Accept-Encoding: gzip,deflate,sdch' -H 'Host: download.acsu.buffalo.edu' -H 'Accept-Language: en-US,en;q=0.8' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.114 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: https://download.acsu.buffalo.edu/index.php?sw=linux/anyconnect-predeploy-linux-64-3.1.02043-k9.tar.gz' -H 'Cookie: _shibsession_64656661756c7468747470733a2f2f646f776e6c6f61642e616373752e62756666616c6f2e6564752f73686962626f6c6574682d7370=_e8773c5700053aac4d10fec5fd03290a; __utma=99522061.1699040314.1383418044.1383434362.1383437581.3; __utmb=99522061.6.10.1383437581; __utmc=99522061; __utmz=99522061.1383437581.3.3.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)' -H 'Connection: keep-alive' --compressed >> anyconnect-predeploy-linux-3.1.02043-k9.tar.gz
+tar -xzvf anyconnect-predeploy-linux-3.1.02043-k9.tar.gz
+rm anyconnect-predeploy-linux-3.1.02043-k9.tar.gz
+cd anyconnect-3.1.02043/vpn
+printf "installing anyconnect\n"
+sudo ./vpn_install.sh
+rm -r anyconnect-3.1.02043
+
+printf "updating the certificates\n"
+curl 'https://download.acsu.buffalo.edu/techtools/linux/AddTrust_External_Root.pem' -H 'If-None-Match: "600e-5f1-f40a1100"' -H 'Accept-Encoding: gzip,deflate,sdch' -H 'Host: download.acsu.buffalo.edu' -H 'Accept-Language: en-US,en;q=0.8' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.114 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: https://download.acsu.buffalo.edu/index.php?sw=linux/AddTrust_External_Root.pem' -H 'Cookie: _shibsession_64656661756c7468747470733a2f2f646f776e6c6f61642e616373752e62756666616c6f2e6564752f73686962626f6c6574682d7370=_e8773c5700053aac4d10fec5fd03290a; __utma=99522061.1699040314.1383418044.1383434362.1383437581.3; __utmc=99522061; __utmz=99522061.1383437581.3.3.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)' -H 'Connection: keep-alive' -H 'If-Modified-Since: Wed, 08 Aug 2012 19:16:52 GMT' -H 'Cache-Control: max-age=0' --compressed >> ${DOWNLOAD}/AddTrust_External_Root.pem
+curl 'https://download.acsu.buffalo.edu/techtools/linux/COMODOHigh-AssuranceSecureServerCA.pem' -H 'If-None-Match: "604e-6fd-f51cb980"' -H 'Accept-Encoding: gzip,deflate,sdch' -H 'Host: download.acsu.buffalo.edu' -H 'Accept-Language: en-US,en;q=0.8' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.114 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: https://download.acsu.buffalo.edu/index.php?sw=linux/COMODOHigh-AssuranceSecureServerCA.pem' -H 'Cookie: _shibsession_64656661756c7468747470733a2f2f646f776e6c6f61642e616373752e62756666616c6f2e6564752f73686962626f6c6574682d7370=_e8773c5700053aac4d10fec5fd03290a; __utma=99522061.1699040314.1383418044.1383437581.1383440305.4; __utmb=99522061.3.10.1383440305; __utmc=99522061; __utmz=99522061.1383437581.3.3.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)' -H 'Connection: keep-alive' -H 'If-Modified-Since: Wed, 08 Aug 2012 19:17:10 GMT' -H 'Cache-Control: max-age=0' --compressed >> ${DOWNLOAD}/COMODOHigh-AssuranceSecureServerCA.pem
+curl 'https://download.acsu.buffalo.edu/techtools/linux/UTN_USERFirst_Hardware_Root_CA.pem' -H 'If-None-Match: "6010-646-f4842300"' -H 'Accept-Encoding: gzip,deflate,sdch' -H 'Host: download.acsu.buffalo.edu' -H 'Accept-Language: en-US,en;q=0.8' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.114 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: https://download.acsu.buffalo.edu/index.php?sw=linux/UTN_USERFirst_Hardware_Root_CA.pem' -H 'Cookie: _shibsession_64656661756c7468747470733a2f2f646f776e6c6f61642e616373752e62756666616c6f2e6564752f73686962626f6c6574682d7370=_e8773c5700053aac4d10fec5fd03290a; __utma=99522061.1699040314.1383418044.1383437581.1383440305.4; __utmb=99522061.2.10.1383440305; __utmc=99522061; __utmz=99522061.1383437581.3.3.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)' -H 'Connection: keep-alive' -H 'If-Modified-Since: Wed, 08 Aug 2012 19:17:00 GMT' -H 'Cache-Control: max-age=0' --compressed >> ${DOWNLOAD}/UTN_USERFirst_Hardware_Root_CA.pem
+sudo mv AddTrust_External_Root.pem /opt/.cisco/certificates/ca/
+sudo mv COMODOHigh-AssuranceSecureServerCA.pem /opt/.cisco/certificates/ca/
+sudo mv UTN_USERFirst_Hardware_Root_CA.pem /opt/.cisco/certificates/ca/
+cd $CURRENT
+
+#unable to get the java standard edition with the wget command
+<<COMMENT 
+printf "installing java......\n"
+wget http://javadl.sun.com/webapps/download/AutoDL?BundleId=81812 -O jre-7u45-linux-x64.tar.gz
+tar -xzvf jre-7u45-linux-x64.tar.gz
+rm jre-7u45-linux-x64.tar.gz
+mv jre1.7.0_45 /usr/lib/jvm/java-7-openjdk-amd64
+sudo update-alternatives --remove-all javac
+sudo update-alternatives --remove-all java
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java 10
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-7-openjdk-amd64/bin/javac 10
+COMMENT
+
+
 
 printf "Installing Node.js.......\n"
 
@@ -161,7 +196,7 @@ heroku keys:add
 
 printf "downloading matlab......\n"
 
-scp sbondada@chatsubo.cse.buffalo.edu:/vpml/share/software/R2013a_UNIX.iso ${DOWNLOAD}
+scp sbondada@chatsubo.cse.buffalo.edu:/vpml/share/software/R2013b_UNIX.iso ${DOWNLOAD}
 
 
 
