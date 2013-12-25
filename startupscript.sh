@@ -141,6 +141,11 @@ sudo apt-get -y install vim >> ${LOG} 2>>${ERR}
 sudo apt-get update >> ${LOG} 2>>${ERR}
 sudo apt-get upgrade >> ${LOG} 2>>${ERR}
 
+printf "installing openconnect....\n"
+
+sudo apt-get -y install network-manager-openconnect-gnome
+
+'
 cd ${DOWNLOAD}
 printf "getting cisco open connect\n"
 
@@ -163,6 +168,7 @@ cd $CURRENT
 
 #unable to get the java standard edition with the wget command
 <<COMMENT 
+'
 printf "installing java......\n"
 wget http://javadl.sun.com/webapps/download/AutoDL?BundleId=81812 -O jre-7u45-linux-x64.tar.gz
 tar -xzvf jre-7u45-linux-x64.tar.gz
