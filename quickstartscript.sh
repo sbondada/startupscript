@@ -18,12 +18,9 @@ printf "Installing Ubuntu Requirements....\n"
 
 sudo apt-get -y install build-essential
 sudo apt-get -y install ubuntu-restricted-essentials
-sudo apt-get -y install wine1.4
 printf "installing Eclipse .....\n"
 
 sudo apt-get -y install eclipse >> ${LOG} 2>>${ERR}
-sudo apt-get -y install eclipse-cdt >> ${LOG} 2>>${ERR}
-sudo apt-get -y install eclipse-egit >> ${LOG} 2>>${ERR}
 
 printf "Installing Google chrome.......\n"
 
@@ -31,17 +28,6 @@ cd ${DOWNLOAD}/
 wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 2>>${ERR}
 dpkg -i  ${DOWNLOAD}/google-chrome-stable_current_amd64.deb >> ${LOG} 2>>${ERR}
 cd -
-
-printf "Installing Dropbox.....\n"
-
-sudo apt-get -y  install nautilus-dropbox >> ${LOG} 2>>${ERR}
-
-printf "Installing and setting Ubuntu one Client.....\n"
-
-sudo add-apt-repository ppa:noobslab/apps >> ${LOG} 2>>${ERR} #adding the rpositoreis
-sudo apt-get update
-sudo apt-get install -y  ubuntuone-client ubuntuone-control-panel ubuntuone-client-proxy ubuntuone-control-panel-qt 
-
 
 printf "Installing Git .....\n"
 
@@ -54,11 +40,6 @@ git config --global user.email "sbondada@buffalo.edu"
 if [ ! -f /home/kaushal/.ssh/id_rsa.pub ] || [ ! -f /home/kaushal/.ssh/id_rsa.pub ] ; then
   ssh-keygen -t rsa -C "sbondada@buffalo.edu"
 fi
-
-printf " Installing Guake .....\n"
-
-sudo apt-get -y install guake >>${LOG} 2>>${ERR}
-
 
 printf "Installing GCC versions.....\n"
 
