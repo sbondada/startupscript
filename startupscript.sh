@@ -12,6 +12,7 @@ sudo apt-get -y  upgrade
 
 CURRENT=$(pwd)
 DOWNLOAD="/home/kaushal/Downloads"
+DOCUMENTS="/home/kaushal/Documents" 
 
 cd ${DOWNLOAD}
 
@@ -200,6 +201,25 @@ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >>${LOG} 2>>${ERR}
 heroku login
 heroku keys:add
 
+cd ${DOCUMENTS}/
+git clone https://github.com/sbondada/dotfiles.git
+git clone https://github.com/sbondada/GeeksforGeeks-A2Z.git
+git clone https://github.com/sbondada/AlgoEra.git
+    
+cd ~
+ln -s ${DOCUMENTS}/dotfiles/vimrc.txt .vimrc
+ln -s ${DOCUMENTS}/dotfiles/tmux.conf.txt .tmux.conf
+
+echo "alias tmux='tmux -2'" >> .bashrc
+
+wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
+https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
+fc-cache -vf ~/.fonts
+mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf
+~/.config/fontconfig/conf.d/
+
+cd ${DOWNLOAD}/
 printf "downloading matlab......\n"
 
 scp sbondada@chatsubo.cse.buffalo.edu:/vpml/share/software/R2013b_UNIX.iso ${DOWNLOAD}
