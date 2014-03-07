@@ -17,7 +17,8 @@ touch startup.log startup.err
 printf "Installing Ubuntu Requirements....\n"
 
 sudo apt-get -y install build-essential
-sudo apt-get -y install ubuntu-restricted-essentials
+sudo apt-get -y install lubuntu-restricted-addons
+sudo apt-get -y install lubuntu-restricted-extras
 printf "installing Eclipse .....\n"
 
 sudo apt-get -y install eclipse >> ${LOG} 2>>${ERR}
