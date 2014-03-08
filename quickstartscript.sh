@@ -83,13 +83,14 @@ git clone https://github.com/sbondada/AlgoEra.git
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 cd ~
-ln -s ${DOCUMENTS}/dotfiles/vimrc.txt .vimrc
-ln -s ${DOCUMENTS}/dotfiles/tmux.conf.txt .tmux.conf
+ln -s ${DOCUMENTS}/dotfiles/vimrc.txt .vimrc >> ${LOG} 2>>${ERR}
+ln -s ${DOCUMENTS}/dotfiles/tmux.conf.txt .tmux.conf >> ${LOG} 2>>${ERR}
+
 
 echo "alias tmux='tmux -2'" >> .bashrc
 
 
 wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
-mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
-fc-cache -vf ~/.fonts
-mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/ >> ${LOG} 2>>${ERR}
+fc-cache -vf ~/.fonts >> ${LOG} 2>>${ERR}
+mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/ >> ${LOG} 2>>${ERR}
