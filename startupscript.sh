@@ -205,15 +205,15 @@ cd ${DOCUMENTS}/
 git clone https://github.com/sbondada/dotfiles.git
 git clone https://github.com/sbondada/GeeksforGeeks-A2Z.git
 git clone https://github.com/sbondada/AlgoEra.git
-    
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle    
+
 cd ~
 ln -s ${DOCUMENTS}/dotfiles/vimrc.txt .vimrc
 ln -s ${DOCUMENTS}/dotfiles/tmux.conf.txt .tmux.conf
 
 echo "alias tmux='tmux -2'" >> .bashrc
 
-wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
-https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
 mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
 fc-cache -vf ~/.fonts
 mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf
