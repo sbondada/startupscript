@@ -76,21 +76,26 @@ printf "Installing VPN......\n"
 
 sudo apt-get -y install network-manager-openconnect-gnome
 
+printf "Cloneing the repositories......\n"
+
 cd ${DOCUMENTS}/
 git clone https://github.com/sbondada/dotfiles.git
 git clone https://github.com/sbondada/GeeksforGeeks-A2Z.git
 git clone https://github.com/sbondada/AlgoEra.git
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
+printf "linking the dotfiles and updating few....\n"
+
 cd ~
-ln -s ${DOCUMENTS}/dotfiles/vimrc.txt .vimrc >> ${LOG} 2>>${ERR}
-ln -s ${DOCUMENTS}/dotfiles/tmux.conf.txt .tmux.conf >> ${LOG} 2>>${ERR}
+sudo ln -s ${DOCUMENTS}/dotfiles/vimrc.txt .vimrc >> ${LOG} 2>>${ERR}
+sudo ln -s ${DOCUMENTS}/dotfiles/tmux.conf.txt .tmux.conf >> ${LOG} 2>>${ERR}
 
 
-echo "alias tmux='tmux -2'" >> .bashrc
+sudo echo "alias tmux='tmux -2'" >> .bashrc
 
+printf "installing powerline symbols....\n"
 
-wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
-mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/ >> ${LOG} 2>>${ERR}
-fc-cache -vf ~/.fonts >> ${LOG} 2>>${ERR}
-mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/ >> ${LOG} 2>>${ERR}
+sudo wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+sudo mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/ >> ${LOG} 2>>${ERR}
+sudo fc-cache -vf ~/.fonts >> ${LOG} 2>>${ERR}
+sudo mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/ >> ${LOG} 2>>${ERR}
